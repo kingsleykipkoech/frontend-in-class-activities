@@ -1,0 +1,251 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #0b0f19;
+  color: #f3f4f6;
+  min-height: 100vh;
+  padding: 30px 20px;
+}
+
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.badge-tag {
+  display: inline-block;
+  background: #1e3a8a;
+  color: #60a5fa;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #9ca3af;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  background: #111827;
+  border: 1px solid #1f2937;
+  padding: 12px 18px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+}
+
+.stat-val {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.stat-lbl {
+  font-size: 11px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.pending-pill .stat-val { color: #f59e0b; }
+.completed-pill .stat-val { color: #10b981; }
+.reading-pill .stat-val { color: #3b82f6; }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.search-wrapper {
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-wrapper input:focus {
+  border-color: #3b82f6;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #111827;
+  border: 1px solid #374151;
+  color: #9ca3af;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: #1f2937;
+  color: #f3f4f6;
+}
+
+.filter-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.card-item {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card-item:hover {
+  transform: translateY(-2px);
+  border-color: #374151;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.card-category {
+  font-size: 11px;
+  font-weight: 600;
+  color: #60a5fa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.status-completed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f9fafb;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #1f2937;
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.card-due {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.card-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px 20px;
+  color: #6b7280;
+  font-size: 15px;
+}

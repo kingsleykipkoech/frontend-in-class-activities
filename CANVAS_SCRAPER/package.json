@@ -1,0 +1,16 @@
+{
+  "name": "canvas_scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "canvas_console_scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.63.0",
+    "puppeteer": "^25.12.0"
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Assignment Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+  <div class="dashboard">
+    <header class="header">
+      <div class="header-title">
+        <span class="badge-tag">Playwright Scraped Data</span>
+        <h1>ALU Canvas Assignment Tracker</h1>
+        <p class="subtitle">Frontend Web Development &middot; In-Person Session</p>
+      </div>
+      <div class="stats-row">
+        <div class="stat-pill">
+          <span class="stat-val" id="total-stat">23</span>
+          <span class="stat-lbl">Total Items</span>
+        </div>
+        <div class="stat-pill pending-pill">
+          <span class="stat-val" id="pending-stat">13</span>
+          <span class="stat-lbl">Actionable Due</span>
+        </div>
+        <div class="stat-pill completed-pill">
+          <span class="stat-val" id="completed-stat">1</span>
+          <span class="stat-lbl">Completed</span>
+        </div>
+        <div class="stat-pill reading-pill">
+          <span class="stat-val" id="reading-stat">9</span>
+          <span class="stat-lbl">Readings</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="search-wrapper">
+        <input type="text" id="search-input" placeholder="Search by assignment name...">
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Items</button>
+        <button class="filter-btn" data-filter="assignment">Coursework</button>
+        <button class="filter-btn" data-filter="reading">Readings</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+    </div>
+
+    <div id="cards-container" class="cards-grid">
+      <!-- jQuery dynamically renders assignment cards here -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
