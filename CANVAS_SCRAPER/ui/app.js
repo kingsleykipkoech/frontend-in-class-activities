@@ -109,16 +109,21 @@ $(function () {
     const percent = total > 0 ? Math.round((submitted / total) * 100) : 0;
 
     // Filter toolbar count badges
+    const summatives = allAssignments.filter(item => getCollectionKey(item) === 'hackathons').length;
+    const quizzes = allAssignments.filter(item => getCollectionKey(item) === 'quizzes').length;
+    const intranet = allAssignments.filter(item => getCollectionKey(item) === 'coursework').length;
+
     $('#pill-cnt-all').text(total);
-    $('#pill-cnt-cw').text(coursework);
+    $('#pill-cnt-sum').text(summatives);
+    $('#pill-cnt-quiz').text(quizzes);
+    $('#pill-cnt-cw').text(intranet);
     $('#pill-cnt-rd').text(readings);
-    $('#pill-cnt-done').text(submitted);
-    $('#pill-cnt-pend').text(pending);
 
     // Hero quick chips
-    $('#hero-chip-cw').text(coursework);
+    $('#hero-chip-sum').text(summatives);
+    $('#hero-chip-quiz').text(quizzes);
+    $('#hero-chip-cw').text(intranet);
     $('#hero-chip-rd').text(readings);
-    $('#hero-chip-due').text(submitted);
 
     // Progress linear track
     $('#progress-fill').css('width', percent + '%');
@@ -133,7 +138,7 @@ $(function () {
     $('#meta-submitted-cnt').text(submitted);
     $('#meta-pending-cnt').text(pending);
     $('#meta-readings-cnt').text(readings);
-    $('#meta-cw-cnt').text(coursework);
+    $('#meta-cw-cnt').text(intranet);
   }
 
   // Filtered dataset based on search input and active pill
@@ -153,9 +158,13 @@ $(function () {
 
       // Category filter matching
       const submitted = isSubmitted(item.status);
+      const colKey = getCollectionKey(item);
+
       if (currentFilter === 'all') return true;
-      if (currentFilter === 'assignment') return item.category === 'Assignment';
-      if (currentFilter === 'reading') return item.category === 'Reading / Resource';
+      if (currentFilter === 'summatives') return colKey === 'hackathons';
+      if (currentFilter === 'quizzes') return colKey === 'quizzes';
+      if (currentFilter === 'coursework' || currentFilter === 'intranet') return colKey === 'coursework';
+      if (currentFilter === 'reading' || currentFilter === 'readings') return colKey === 'readings';
       if (currentFilter === 'submitted') return submitted;
       if (currentFilter === 'pending') return !submitted;
 
@@ -204,7 +213,7 @@ $(function () {
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
       </svg>`;
     }
-    // Default: coursework / coding
+    // Default: coursework / intranet
     return `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="16 18 22 12 16 6"></polyline>
       <polyline points="8 6 2 12 8 18"></polyline>
@@ -212,38 +221,38 @@ $(function () {
     </svg>`;
   }
 
-  // 1. RENDER COLLECTIONS VIEW (User's Requested Fanned Glass Decks)
+  // 1. RENDER COLLECTIONS VIEW (Ordered: Summatives, Quizzes, Intranet, Readings)
   function renderCollectionsView(items) {
     $('#cards-grid').removeClass('grid-view list-view').addClass('collections-view');
 
-    // Group items into distinct collections
+    // Group items into distinct collections with user requested titles & order
     const collections = {
-      readings: {
-        title: 'Mandatory Readings & Video Guides',
-        subtitle: 'Official course literature, documentation and mandatory study resources',
-        emoji: '📚',
-        theme: 'reading',
-        items: []
-      },
-      quizzes: {
-        title: 'Quizzes & Concept Checkpoints',
-        subtitle: 'Formative assessments testing core HTML, CSS and JS prowess',
-        emoji: '📝',
-        theme: 'quiz',
-        items: []
-      },
       hackathons: {
-        title: 'Hackathons & Milestones',
-        subtitle: 'High-intensity coding hackathons and evaluated deliverables',
+        title: 'Summatives & Formatives',
+        subtitle: 'High-impact project evaluations, milestones and onboarding hackathons',
         emoji: '⚡',
         theme: 'hackathon',
         items: []
       },
+      quizzes: {
+        title: 'Quiz',
+        subtitle: 'Concept checks & formative knowledge assessments',
+        emoji: '📝',
+        theme: 'quiz',
+        items: []
+      },
       coursework: {
-        title: 'Programming Labs & Core Coursework',
-        subtitle: 'Hands-on practical development tasks synced from intranet',
+        title: 'Intranet',
+        subtitle: 'Practical development tasks synced from intranet portal',
         emoji: '💻',
         theme: 'coursework',
+        items: []
+      },
+      readings: {
+        title: 'Complementary Readings',
+        subtitle: 'Supplemental reading materials, documentation and weekly study guides',
+        emoji: '📚',
+        theme: 'reading',
         items: []
       }
     };
@@ -253,10 +262,9 @@ $(function () {
       collections[key].items.push(item);
     });
 
-    // Generate HTML for each collection with matching items
+    // Generate HTML in user's requested order: Summatives & Quizzes on top, Readings last
     let collectionsHtml = '';
-
-    const collectionKeys = ['readings', 'coursework', 'quizzes', 'hackathons'];
+    const collectionKeys = ['hackathons', 'quizzes', 'coursework', 'readings'];
 
     collectionKeys.forEach(key => {
       const col = collections[key];
@@ -270,11 +278,11 @@ $(function () {
         const module = getModuleInfo(item.title);
         const due = formatDueDate(item);
 
-        // Calculate smooth fan rotation between -16deg and +16deg
+        // Calculate smooth fan rotation between -15deg and +15deg
         let rot = 0;
         if (totalItems > 1) {
-          const step = 32 / (totalItems - 1);
-          rot = Math.round(-16 + idx * step);
+          const step = 30 / (totalItems - 1);
+          rot = Math.round(-15 + idx * step);
         }
 
         // Bottom label for user's requested data-text attribute
@@ -283,10 +291,14 @@ $(function () {
           bottomText = '✓ SUBMITTED';
         } else if (due.hasDate) {
           bottomText = `DUE: ${due.text}`;
-        } else if (col.theme === 'reading') {
-          bottomText = 'RESOURCE GUIDE';
+        } else if (key === 'readings') {
+          bottomText = 'COMPLEMENTARY';
+        } else if (key === 'quizzes') {
+          bottomText = 'QUIZ';
+        } else if (key === 'hackathons') {
+          bottomText = 'SUMMATIVE';
         } else {
-          bottomText = 'PENDING';
+          bottomText = 'INTRANET';
         }
 
         return `

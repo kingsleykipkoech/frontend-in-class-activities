@@ -3026,9 +3026,8 @@ body {
 /* Glass Deck Scroll Container */
 .glass-deck-scroll {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: visible;
-  padding: 24px 20px 38px 20px;
+  overflow: visible;
+  padding: 20px 10px 34px 10px;
   display: flex;
   justify-content: center;
 }
@@ -3037,17 +3036,28 @@ body {
 .container.glass-deck {
   position: relative;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px 30px;
-  min-width: max-content;
+  padding: 14px 16px;
+  width: 100%;
+  max-width: 100%;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* On hover on the collection deck: WRAP cards horizontally inside the box so any cards that don't fit go horizontal on the next row */
+.container.glass-deck:hover,
+.container.glass-deck:focus-within {
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 24px;
 }
 
 /* User's exact .glass card with bright, vibrant luminous enhancements */
 .container .glass {
   position: relative;
-  width: 220px;
-  height: 290px;
+  width: 215px;
+  height: 285px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 55%, rgba(14, 18, 30, 0.9) 100%);
   border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow: 0 25px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -3055,9 +3065,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 16px;
-  margin: 0 -36px;
+  margin: 8px -38px;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transform: rotate(calc(var(--r) * 1deg));
@@ -3066,6 +3076,12 @@ body {
   padding: 16px 14px 46px 14px;
   color: #fff;
   z-index: 1;
+  flex-shrink: 0;
+}
+
+.container .glass:only-child {
+  margin: 8px 10px;
+  transform: none;
 }
 
 /* Bright Theme Specific Glowing Neon Outlines */
@@ -3119,17 +3135,17 @@ body {
   filter: drop-shadow(0 0 14px rgba(0, 255, 117, 0.9));
 }
 
-/* User's exact hover spread behavior */
+/* User's exact hover spread behavior: cards un-rotate and wrap horizontally with clean spacing */
 .container:hover .glass {
   transform: rotate(0deg);
-  margin: 0 10px;
+  margin: 10px 10px;
 }
 
 /* Individual card hover: pops out with intense bright neon aura */
 .container .glass:hover {
-  transform: rotate(0deg) translateY(-14px) scale(1.08) !important;
-  margin: 0 16px !important;
-  z-index: 25;
+  transform: rotate(0deg) translateY(-14px) scale(1.06) !important;
+  margin: 10px 14px !important;
+  z-index: 50;
   box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7), 0 0 38px var(--glow-color) !important;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(18, 24, 38, 0.98) 100%);
 }
