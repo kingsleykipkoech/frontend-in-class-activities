@@ -61,59 +61,113 @@
       </div>
     </header>
 
-    <!-- Hero Title & Integrated Progress Dashboard -->
+    <!-- Hero Title & Statistics -->
     <section class="dashboard-hero">
-      <div class="hero-left">
-        <div class="hero-badge-row">
-          <span class="hero-eyebrow">CANVAS LMS // ALU HUB</span>
-          <span class="hero-live-pill"><span class="pulse-indicator"></span> LIVE ACADEMIC FEED</span>
-        </div>
+      <div class="hero-header">
         <h2 class="hero-title">Assignment Tracker</h2>
-        <p class="hero-desc">Coursework deliverables, interactive labs, and mandatory readings synchronized live from student portal.</p>
-        
-        <div class="hero-quick-chips">
-          <span class="quick-chip alert-chip"><strong id="hero-chip-sum">1</strong> Summative</span>
-          <span class="quick-chip"><strong id="hero-chip-quiz">1</strong> Quiz</span>
-          <span class="quick-chip"><strong id="hero-chip-cw">12</strong> Intranet</span>
-          <span class="quick-chip"><strong id="hero-chip-rd">9</strong> Readings</span>
-        </div>
+        <p class="hero-desc">Real-time breakdown of coursework, resources, and live submission statuses.</p>
       </div>
 
-      <!-- Integrated High-Tech HUD Progress Card -->
-      <div class="progress-card">
-        <div class="progress-card-top">
-          <div class="progress-label-wrap">
-            <span class="progress-card-title">PROGRESS OVERVIEW</span>
-            <div class="progress-stat-row">
-              <span class="progress-percentage" id="progress-stat">4% Completed</span>
-              <span class="progress-chip" id="progress-chip">1 / 23 Tasks</span>
-            </div>
+      <!-- Cyber Category Buttons replacing the old stat boxes (no repetition!) -->
+      <div class="filters-bar" id="filters-bar">
+        <button class="cyber-btn active" data-filter="all">
+          <span class="btn-label">ALL <span class="pill-count" id="pill-cnt-all">23</span></span>
+          <div class="clip">
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+            <div class="corner right-top"></div>
+            <div class="corner left-bottom"></div>
           </div>
-          
-          <!-- Futuristic Radial Gauge -->
-          <div class="radial-gauge-wrap" title="Completion Rate">
-            <svg class="radial-gauge" viewBox="0 0 36 36">
-              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              <path class="circle-val" id="radial-progress-val" stroke-dasharray="4, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-            </svg>
-            <span class="gauge-center-val" id="gauge-center-text">4%</span>
-          </div>
-        </div>
+          <span class="arrow right-arrow"></span>
+          <span class="arrow left-arrow"></span>
+        </button>
 
+        <button class="cyber-btn" data-filter="summatives">
+          <span class="btn-label">SUMMATIVES <span class="pill-count" id="pill-cnt-sum">1</span></span>
+          <div class="clip">
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+            <div class="corner right-top"></div>
+            <div class="corner left-bottom"></div>
+          </div>
+          <span class="arrow right-arrow"></span>
+          <span class="arrow left-arrow"></span>
+        </button>
+
+        <button class="cyber-btn" data-filter="quizzes">
+          <span class="btn-label">QUIZ <span class="pill-count" id="pill-cnt-quiz">1</span></span>
+          <div class="clip">
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+            <div class="corner right-top"></div>
+            <div class="corner left-bottom"></div>
+          </div>
+          <span class="arrow right-arrow"></span>
+          <span class="arrow left-arrow"></span>
+        </button>
+
+        <button class="cyber-btn" data-filter="coursework">
+          <span class="btn-label">INTRANET <span class="pill-count" id="pill-cnt-cw">12</span></span>
+          <div class="clip">
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+            <div class="corner right-top"></div>
+            <div class="corner left-bottom"></div>
+          </div>
+          <span class="arrow right-arrow"></span>
+          <span class="arrow left-arrow"></span>
+        </button>
+
+        <button class="cyber-btn" data-filter="reading">
+          <span class="btn-label">READINGS <span class="pill-count" id="pill-cnt-rd">9</span></span>
+          <div class="clip">
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+            <div class="corner right-top"></div>
+            <div class="corner left-bottom"></div>
+          </div>
+          <span class="arrow right-arrow"></span>
+          <span class="arrow left-arrow"></span>
+        </button>
+
+        <button class="cyber-btn" data-filter="submitted">
+          <span class="btn-label">DONE <span class="pill-count" id="pill-cnt-done">1</span></span>
+          <div class="clip">
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+            <div class="corner right-top"></div>
+            <div class="corner left-bottom"></div>
+          </div>
+          <span class="arrow right-arrow"></span>
+          <span class="arrow left-arrow"></span>
+        </button>
+
+        <button class="cyber-btn" data-filter="pending">
+          <span class="btn-label">PENDING <span class="pill-count" id="pill-cnt-pend">22</span></span>
+          <div class="clip">
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+            <div class="corner right-top"></div>
+            <div class="corner left-bottom"></div>
+          </div>
+          <span class="arrow right-arrow"></span>
+          <span class="arrow left-arrow"></span>
+        </button>
+      </div>
+
+      <!-- Overall Completion Rate Progress Bar from screenshot -->
+      <div class="progress-container">
+        <div class="progress-info">
+          <span class="progress-title">Completion Rate</span>
+          <span class="progress-stat" id="progress-stat">4% Completed (1/23)</span>
+        </div>
         <div class="progress-track">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-
-        <div class="progress-card-meta">
-          <span class="meta-item"><span class="meta-dot dot-submitted"></span> <strong id="meta-submitted-cnt">1</strong> Done</span>
-          <span class="meta-item"><span class="meta-dot dot-pending"></span> <strong id="meta-pending-cnt">22</strong> Pending</span>
-          <span class="meta-item"><span class="meta-dot dot-reading"></span> <strong id="meta-readings-cnt">9</strong> Readings</span>
-          <span class="meta-item"><span class="meta-dot dot-cw"></span> <strong id="meta-cw-cnt">12</strong> Intranet</span>
+          <div class="progress-fill" id="progress-fill" style="width: 4%;"></div>
         </div>
       </div>
     </section>
 
-    <!-- Toolbar: Search Bar + Cyber Filter Buttons + View Toggle -->
+    <!-- Toolbar: Search Bar + View Mode Toggle ONLY (no duplicate buttons!) -->
     <section class="toolbar-section">
       <!-- Uiverse Glowing Search Bar -->
       <div class="search-container">
@@ -188,69 +242,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Sci-Fi HUD Cyber Category Buttons -->
-      <div class="filters-bar" id="filters-bar">
-        <button class="cyber-btn active" data-filter="all">
-          <span class="btn-label">ALL <span class="pill-count" id="pill-cnt-all">23</span></span>
-          <div class="clip">
-            <div class="corner left-top"></div>
-            <div class="corner right-bottom"></div>
-            <div class="corner right-top"></div>
-            <div class="corner left-bottom"></div>
-          </div>
-          <span class="arrow right-arrow"></span>
-          <span class="arrow left-arrow"></span>
-        </button>
-
-        <button class="cyber-btn" data-filter="summatives">
-          <span class="btn-label">SUMMATIVES <span class="pill-count" id="pill-cnt-sum">1</span></span>
-          <div class="clip">
-            <div class="corner left-top"></div>
-            <div class="corner right-bottom"></div>
-            <div class="corner right-top"></div>
-            <div class="corner left-bottom"></div>
-          </div>
-          <span class="arrow right-arrow"></span>
-          <span class="arrow left-arrow"></span>
-        </button>
-
-        <button class="cyber-btn" data-filter="quizzes">
-          <span class="btn-label">QUIZ <span class="pill-count" id="pill-cnt-quiz">1</span></span>
-          <div class="clip">
-            <div class="corner left-top"></div>
-            <div class="corner right-bottom"></div>
-            <div class="corner right-top"></div>
-            <div class="corner left-bottom"></div>
-          </div>
-          <span class="arrow right-arrow"></span>
-          <span class="arrow left-arrow"></span>
-        </button>
-
-        <button class="cyber-btn" data-filter="coursework">
-          <span class="btn-label">INTRANET <span class="pill-count" id="pill-cnt-cw">12</span></span>
-          <div class="clip">
-            <div class="corner left-top"></div>
-            <div class="corner right-bottom"></div>
-            <div class="corner right-top"></div>
-            <div class="corner left-bottom"></div>
-          </div>
-          <span class="arrow right-arrow"></span>
-          <span class="arrow left-arrow"></span>
-        </button>
-
-        <button class="cyber-btn" data-filter="reading">
-          <span class="btn-label">READINGS <span class="pill-count" id="pill-cnt-rd">9</span></span>
-          <div class="clip">
-            <div class="corner left-top"></div>
-            <div class="corner right-bottom"></div>
-            <div class="corner right-top"></div>
-            <div class="corner left-bottom"></div>
-          </div>
-          <span class="arrow right-arrow"></span>
-          <span class="arrow left-arrow"></span>
-        </button>
       </div>
 
       <!-- View Layout Mode Switcher (Collections Decks / Grid / Compact List) -->

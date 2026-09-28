@@ -102,7 +102,6 @@ $(function () {
   // Calculate and update metrics across dashboard
   function updateMetrics() {
     const total = allAssignments.length;
-    const coursework = allAssignments.filter(item => item.category === 'Assignment').length;
     const readings = allAssignments.filter(item => item.category === 'Reading / Resource').length;
     const submitted = allAssignments.filter(item => isSubmitted(item.status)).length;
     const pending = total - submitted;
@@ -118,27 +117,12 @@ $(function () {
     $('#pill-cnt-quiz').text(quizzes);
     $('#pill-cnt-cw').text(intranet);
     $('#pill-cnt-rd').text(readings);
+    $('#pill-cnt-done').text(submitted);
+    $('#pill-cnt-pend').text(pending);
 
-    // Hero quick chips
-    $('#hero-chip-sum').text(summatives);
-    $('#hero-chip-quiz').text(quizzes);
-    $('#hero-chip-cw').text(intranet);
-    $('#hero-chip-rd').text(readings);
-
-    // Progress linear track
+    // Progress linear track from screenshot
     $('#progress-fill').css('width', percent + '%');
-    $('#progress-stat').text(`${percent}% Completed`);
-    $('#progress-chip').text(`${submitted} / ${total} Tasks`);
-
-    // Radial gauge meter
-    $('#radial-progress-val').attr('stroke-dasharray', `${percent}, 100`);
-    $('#gauge-center-text').text(`${percent}%`);
-
-    // Metadata breakdown dots
-    $('#meta-submitted-cnt').text(submitted);
-    $('#meta-pending-cnt').text(pending);
-    $('#meta-readings-cnt').text(readings);
-    $('#meta-cw-cnt').text(intranet);
+    $('#progress-stat').text(`${percent}% Completed (${submitted}/${total})`);
   }
 
   // Filtered dataset based on search input and active pill
@@ -193,31 +177,14 @@ $(function () {
     }
   }
 
-  // Helper for generating collection icons
-  function getCollectionIcon(key) {
-    if (key === 'readings') {
-      return `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-        <path d="M8 7h8m-8 4h6"></path>
-      </svg>`;
-    }
-    if (key === 'quizzes') {
-      return `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 11l3 3L22 4"></path>
-        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-      </svg>`;
-    }
-    if (key === 'hackathons') {
-      return `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-      </svg>`;
-    }
-    // Default: coursework / intranet
+  // Helper for generating clean document icon
+  function getCollectionIcon() {
     return `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="16 18 22 12 16 6"></polyline>
-      <polyline points="8 6 2 12 8 18"></polyline>
-      <line x1="14" y1="4" x2="10" y2="20"></line>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+      <polyline points="14 2 14 8 20 8"></polyline>
+      <line x1="16" y1="13" x2="8" y2="13"></line>
+      <line x1="16" y1="17" x2="8" y2="17"></line>
+      <polyline points="10 9 9 9 8 9"></polyline>
     </svg>`;
   }
 
@@ -225,33 +192,25 @@ $(function () {
   function renderCollectionsView(items) {
     $('#cards-grid').removeClass('grid-view list-view').addClass('collections-view');
 
-    // Group items into distinct collections with user requested titles & order
+    // Group items into distinct collections with user requested titles & order (no fluff)
     const collections = {
       hackathons: {
         title: 'Summatives & Formatives',
-        subtitle: 'High-impact project evaluations, milestones and onboarding hackathons',
-        emoji: '⚡',
         theme: 'hackathon',
         items: []
       },
       quizzes: {
         title: 'Quiz',
-        subtitle: 'Concept checks & formative knowledge assessments',
-        emoji: '📝',
         theme: 'quiz',
         items: []
       },
       coursework: {
         title: 'Intranet',
-        subtitle: 'Practical development tasks synced from intranet portal',
-        emoji: '💻',
         theme: 'coursework',
         items: []
       },
       readings: {
         title: 'Complementary Readings',
-        subtitle: 'Supplemental reading materials, documentation and weekly study guides',
-        emoji: '📚',
         theme: 'reading',
         items: []
       }
@@ -311,15 +270,14 @@ $(function () {
             data-text="${escapeHtml(bottomText)}"
             title="${escapeHtml(item.title)} &bull; Click to open in Canvas"
           >
-            <!-- Top tag & indicator -->
+            <!-- Top tag -->
             <div class="glass-top">
               <span class="glass-tag tag-${module.type}">${module.tag}</span>
-              <span class="glass-dot ${submitted ? 'dot-submitted' : 'dot-pending'}"></span>
             </div>
 
             <!-- Center icon -->
             <div class="glass-icon">
-              ${getCollectionIcon(key)}
+              ${getCollectionIcon()}
             </div>
 
             <!-- Title & Info -->
@@ -338,15 +296,9 @@ $(function () {
 
       collectionsHtml += `
         <div class="collection-block theme-${col.theme}">
-          <!-- Collection Header -->
+          <!-- Clean Collection Header (no emoji badge, no subtitles) -->
           <div class="collection-header">
-            <div class="collection-title-wrap">
-              <span class="collection-badge-icon">${col.emoji}</span>
-              <div>
-                <h3 class="collection-heading">${col.title}</h3>
-                <p class="collection-sub">${col.subtitle}</p>
-              </div>
-            </div>
+            <h3 class="collection-heading">${col.title}</h3>
             <div class="collection-meta">
               <span class="collection-counter">${totalItems} ${totalItems === 1 ? 'Item' : 'Items'}</span>
               <span class="deck-hint-pill">Hover deck to expand</span>
