@@ -137,11 +137,11 @@ $(function () {
         <div class="card">
           <div class="card2">
             <div class="card-header-row">
-              <span class="cyber-tag ${catClass}">
+              <span class="badge-tag ${catClass}">
                 <span class="dot ${dotClass}"></span>
                 <span class="tag-txt">${catLabel}</span>
               </span>
-              <span class="cyber-tag ${statusClass}">
+              <span class="badge-tag ${statusClass}">
                 <span class="tag-txt">${statusLabel}</span>
               </span>
             </div>
