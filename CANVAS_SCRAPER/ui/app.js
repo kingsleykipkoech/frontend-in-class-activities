@@ -57,13 +57,6 @@ $(function () {
     const submitted = allAssignments.filter(item => isSubmitted(item.status)).length;
     const pending = total - submitted;
 
-    // Header stats
-    $('#cnt-total').text(total);
-    $('#cnt-cw').text(coursework);
-    $('#cnt-rd').text(readings);
-    $('#cnt-done').text(submitted);
-    $('#cnt-pend').text(pending);
-
     // Filter pill count badges
     $('#pill-cnt-all').text(total);
     $('#pill-cnt-cw').text(coursework);
@@ -161,7 +154,7 @@ $(function () {
                 <span>${escapeHtml(item.dueDate || 'No due date')}</span>
               </div>
               
-              <!-- Sci-Fi HUD Action Button -->
+              <!-- Clean Self-Contained Cyber Action Button -->
               <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="cyber-btn card-action-cyber">
                 <span class="btn-label">OPEN CANVAS</span>
                 <div class="clip">
@@ -170,8 +163,6 @@ $(function () {
                   <div class="corner right-top"></div>
                   <div class="corner left-bottom"></div>
                 </div>
-                <span class="arrow right-arrow"></span>
-                <span class="arrow left-arrow"></span>
               </a>
             </div>
           </div>
