@@ -1982,6 +1982,8 @@ body {
 
 .dashboard-hero .filters-bar {
   margin-bottom: 20px;
+  overflow: hidden;
+  padding: 6px 4px;
 }
 
 /* Overall Progress Container (exact from Screenshot 1) */
@@ -2388,6 +2390,7 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  overflow: hidden;
 }
 
 .cyber-btn .btn-label {
@@ -2466,8 +2469,8 @@ body {
 
 .cyber-btn .corner {
   position: absolute;
-  width: 3.5em;
-  height: 3.5em;
+  width: 2.2em;
+  height: 2.2em;
   background-color: #2761c3;
   box-shadow: inset 1px 1px 8px #2781c3;
   transform: scale(1) rotate(45deg);
@@ -2475,23 +2478,25 @@ body {
 }
 
 .cyber-btn .right-top {
-  top: -1.75em;
-  left: 90%;
+  top: -1.1em;
+  left: calc(100% - 1.1em);
 }
 
 .cyber-btn .left-top {
-  top: -1.75em;
-  left: -2.7em;
+  top: -1.1em;
+  left: -1.1em;
 }
 
 .cyber-btn .left-bottom {
-  top: 1.85em;
-  left: -1.95em;
+  bottom: -1.1em;
+  left: -1.1em;
+  top: auto;
 }
 
 .cyber-btn .right-bottom {
-  top: 45%;
-  left: 88%;
+  bottom: -1.1em;
+  left: calc(100% - 1.1em);
+  top: auto;
 }
 
 .cyber-btn:hover .left-top {
