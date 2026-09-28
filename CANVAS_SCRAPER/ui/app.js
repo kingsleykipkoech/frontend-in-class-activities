@@ -177,18 +177,50 @@ $(function () {
     }
   }
 
-  // Helper for generating clean document icon
-  function getCollectionIcon() {
-    return `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-      <polyline points="14 2 14 8 20 8"></polyline>
-      <line x1="16" y1="13" x2="8" y2="13"></line>
-      <line x1="16" y1="17" x2="8" y2="17"></line>
-      <polyline points="10 9 9 9 8 9"></polyline>
-    </svg>`;
+  // Helper for generating user's exact .card component (NO extra icons, NO fluff)
+  function createCardHtml(item, colTheme, rot = 0) {
+    const submitted = isSubmitted(item.status);
+    const module = getModuleInfo(item.title);
+    const due = formatDueDate(item);
+
+    let bottomText = '';
+    if (submitted) {
+      bottomText = '✓ SUBMITTED';
+    } else if (due.hasDate) {
+      bottomText = `DUE: ${due.text}`;
+    } else if (colTheme === 'reading') {
+      bottomText = 'COMPLEMENTARY';
+    } else if (colTheme === 'quiz') {
+      bottomText = 'QUIZ';
+    } else if (colTheme === 'hackathon') {
+      bottomText = 'SUMMATIVE';
+    } else {
+      bottomText = 'INTRANET';
+    }
+
+    const rotStyle = rot !== 0 ? `style="--r: ${rot};"` : '';
+
+    return `
+      <a 
+        href="${escapeHtml(item.url)}" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="card card-${colTheme} ${submitted ? 'card-submitted' : ''}" 
+        ${rotStyle}
+        title="${escapeHtml(item.title)} &bull; Click to open in Canvas"
+      >
+        <div class="border"></div>
+        <div class="content">
+          <span class="card-tag">${escapeHtml(module.tag)}</span>
+          <h4 class="card-title">${escapeHtml(getCleanTitle(item.title))}</h4>
+          <span class="card-due">${escapeHtml(due.text)}</span>
+        </div>
+        <span class="bottom-text">${escapeHtml(bottomText)}</span>
+      </a>
+    `;
   }
 
-  // 1. RENDER COLLECTIONS VIEW (Ordered: Summatives, Quizzes, Intranet, Readings)
+  // 1. RENDER COLLECTIONS VIEW (Ordered: Summatives & Quiz on top, Intranet, Readings last)
   function renderCollectionsView(items) {
     $('#cards-grid').removeClass('grid-view list-view').addClass('collections-view');
 
@@ -221,82 +253,22 @@ $(function () {
       collections[key].items.push(item);
     });
 
-    // Generate HTML in user's requested order: Summatives & Quizzes on top, Readings last
-    let collectionsHtml = '';
-    const collectionKeys = ['hackathons', 'quizzes', 'coursework', 'readings'];
-
-    collectionKeys.forEach(key => {
+    function buildCollectionBlock(key) {
       const col = collections[key];
-      if (col.items.length === 0) return;
+      if (col.items.length === 0) return '';
 
       const totalItems = col.items.length;
-
-      // Build fanned cards with custom calculated --r rotation angles
       const cardsHtml = col.items.map((item, idx) => {
-        const submitted = isSubmitted(item.status);
-        const module = getModuleInfo(item.title);
-        const due = formatDueDate(item);
-
-        // Calculate smooth fan rotation between -15deg and +15deg
         let rot = 0;
         if (totalItems > 1) {
-          const step = 30 / (totalItems - 1);
-          rot = Math.round(-15 + idx * step);
+          const step = 28 / (totalItems - 1);
+          rot = Math.round(-14 + idx * step);
         }
-
-        // Bottom label for user's requested data-text attribute
-        let bottomText = '';
-        if (submitted) {
-          bottomText = '✓ SUBMITTED';
-        } else if (due.hasDate) {
-          bottomText = `DUE: ${due.text}`;
-        } else if (key === 'readings') {
-          bottomText = 'COMPLEMENTARY';
-        } else if (key === 'quizzes') {
-          bottomText = 'QUIZ';
-        } else if (key === 'hackathons') {
-          bottomText = 'SUMMATIVE';
-        } else {
-          bottomText = 'INTRANET';
-        }
-
-        return `
-          <a 
-            href="${escapeHtml(item.url)}" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="glass glass-${col.theme} ${submitted ? 'glass-submitted' : ''}" 
-            style="--r: ${rot};" 
-            data-text="${escapeHtml(bottomText)}"
-            title="${escapeHtml(item.title)} &bull; Click to open in Canvas"
-          >
-            <!-- Top tag -->
-            <div class="glass-top">
-              <span class="glass-tag tag-${module.type}">${module.tag}</span>
-            </div>
-
-            <!-- Center icon -->
-            <div class="glass-icon">
-              ${getCollectionIcon()}
-            </div>
-
-            <!-- Title & Info -->
-            <div class="glass-info">
-              <h4 class="glass-title">${escapeHtml(getCleanTitle(item.title))}</h4>
-              <span class="glass-due">${escapeHtml(due.text)}</span>
-            </div>
-
-            <!-- Hover quick hint -->
-            <div class="glass-hover-hint">
-              <span>Open in Canvas &rarr;</span>
-            </div>
-          </a>
-        `;
+        return createCardHtml(item, col.theme, rot);
       }).join('');
 
-      collectionsHtml += `
+      return `
         <div class="collection-block theme-${col.theme}">
-          <!-- Clean Collection Header (no emoji badge, no subtitles) -->
           <div class="collection-header">
             <h3 class="collection-heading">${col.title}</h3>
             <div class="collection-meta">
@@ -304,8 +276,6 @@ $(function () {
               <span class="deck-hint-pill">Hover deck to expand</span>
             </div>
           </div>
-
-          <!-- Uiverse Fanned Glass Deck Container -->
           <div class="glass-deck-scroll">
             <div class="glass-deck container">
               ${cardsHtml}
@@ -313,80 +283,35 @@ $(function () {
           </div>
         </div>
       `;
-    });
+    }
 
-    $('#cards-grid').html(collectionsHtml);
+    // Top Row: Put Summatives and Quiz side by side so single cards don't waste full-width space!
+    const summativeBlock = buildCollectionBlock('hackathons');
+    const quizBlock = buildCollectionBlock('quizzes');
+    let topRowHtml = '';
+    if (summativeBlock || quizBlock) {
+      topRowHtml = `
+        <div class="collections-top-row">
+          ${summativeBlock}
+          ${quizBlock}
+        </div>
+      `;
+    }
+
+    const intranetBlock = buildCollectionBlock('coursework');
+    const readingsBlock = buildCollectionBlock('readings');
+
+    $('#cards-grid').html(topRowHtml + intranetBlock + readingsBlock);
   }
 
-  // 2. RENDER GRID VIEW (Spacious Cards Grid)
+  // 2. RENDER GRID VIEW (Using user's exact .card design - NO bloated card2, NO extra icons)
   function renderGridView(items) {
     $('#cards-grid').removeClass('collections-view list-view').addClass('grid-view');
 
     const html = items.map(item => {
-      const isReading = item.category === 'Reading / Resource';
-      const catClass = isReading ? 'cat-reading' : 'cat-assignment';
-      const dotClass = isReading ? 'dot-purple' : 'dot-blue';
-      const catLabel = isReading ? 'Reading' : 'Coursework';
-
-      const submitted = isSubmitted(item.status);
-      const statusClass = submitted ? 'status-done' : 'status-pending';
-      const statusLabel = submitted ? 'Submitted' : 'Pending';
-
-      const module = getModuleInfo(item.title);
-      const due = formatDueDate(item);
-
-      return `
-        <div class="card ${submitted ? 'card-submitted' : 'card-pending'}">
-          <div class="card2">
-            <!-- Top Card Header: Category + Module + Status -->
-            <div class="card-header-row">
-              <div class="card-tags-group">
-                <span class="badge-tag ${catClass}">
-                  <span class="dot ${dotClass}"></span>
-                  <span class="tag-txt">${catLabel}</span>
-                </span>
-                <span class="module-chip chip-${module.type}">${module.tag}</span>
-              </div>
-              <span class="badge-tag ${statusClass}">
-                ${submitted 
-                  ? '<svg class="badge-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>' 
-                  : '<span class="status-pulse"></span>'
-                }
-                <span class="tag-txt">${statusLabel}</span>
-              </span>
-            </div>
-
-            <!-- Card Body: Title with clean link -->
-            <div class="card-body">
-              <h3 class="card-title" title="${escapeHtml(item.title)}">
-                <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
-                  ${escapeHtml(item.title)}
-                </a>
-              </h3>
-            </div>
-
-            <!-- Card Footer: Due Date & Sleek Action Button -->
-            <div class="card-footer-row">
-              <div class="due-date ${due.hasDate ? 'has-date' : ''}">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span>${escapeHtml(due.text)}</span>
-              </div>
-              
-              <!-- Sleek High-Tech Launch Action -->
-              <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="card-action-btn" title="Open assignment in Canvas">
-                <span>Launch</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      `;
+      const colKey = getCollectionKey(item);
+      const themeMap = { hackathons: 'hackathon', quizzes: 'quiz', coursework: 'coursework', readings: 'reading' };
+      return createCardHtml(item, themeMap[colKey] || 'coursework', 0);
     }).join('');
 
     $('#cards-grid').html(html);
