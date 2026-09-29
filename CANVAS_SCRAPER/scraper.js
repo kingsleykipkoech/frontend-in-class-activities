@@ -1,6 +1,15 @@
 const { chromium } = require('playwright');
 const { JSDOM } = require('jsdom');
 
+// jQuery 4.0 in Node requires using the factory explicitly with JSDOM's window
+let createJQuery;
+try {
+  const factoryModule = require('jquery/factory');
+  createJQuery = factoryModule.jQueryFactory || factoryModule;
+} catch {
+  createJQuery = require('jquery');
+}
+
 /**
  * Canvas Assignment Scraper
  * Uses Playwright to fetch pages (login required), then jQuery + JSDOM to parse the DOM.
@@ -36,7 +45,7 @@ async function scrapeCanvas() {
   // Get the full page HTML and parse it with JSDOM + jQuery
   const assignmentsPageHtml = await page.content();
   const assignmentsDom = new JSDOM(assignmentsPageHtml);
-  const $assignments = require('jquery')(assignmentsDom.window);
+  const $assignments = createJQuery(assignmentsDom.window);
 
   // Use jQuery to extract all assignment links from the page
   const links = [];
@@ -75,7 +84,7 @@ async function scrapeCanvas() {
 
       // Parse with JSDOM + jQuery
       const detailDom = new JSDOM(detailHtml);
-      const $ = require('jquery')(detailDom.window);
+      const $ = createJQuery(detailDom.window);
 
       // --- Extract Assignment Title using jQuery ---
       let title = $('h1.title').text().trim() || $('h1').first().text().trim() || 'Unknown';
