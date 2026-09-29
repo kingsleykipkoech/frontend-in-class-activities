@@ -21,14 +21,26 @@ function scrapeData() {
       const link = rawLink.startsWith('http') ? rawLink : `https://alueducation.instructure.com${rawLink}`;
       if (!assignments.some(a => a.link === link)) {
         assignments.push({ title, link });
-        console.log(`Title: ${title}, Link: ${link}`);
       }
     }
   });
 
-  console.log(`\nTotal assignments scraped: ${assignments.length}`);
+  console.log('\n' + '='.repeat(80));
+  console.log('                        CANVAS ASSIGNMENTS');
+  console.log('='.repeat(80) + '\n');
+
+  assignments.forEach((item, index) => {
+    const num = String(index + 1).padStart(2, ' ');
+    console.log(`  [${num}] ${item.title}`);
+    console.log(`       ${item.link}\n`);
+  });
+
+  console.log('-'.repeat(80));
+  console.log(`  Total Scraped: ${assignments.length} assignments`);
+  console.log('='.repeat(80) + '\n');
 }
 
 scrapeData();
+
 
 
