@@ -68,7 +68,6 @@ $(function () {
 
     const html = list.map(item => {
       const isReading = item.category === 'Reading / Resource';
-      const indClass = isReading ? 'ind-reading' : 'ind-assignment';
       const catLabel = isReading ? 'Reading' : 'Assignment';
 
       let badgeCls = 'badge-pending', badgeTxt = 'Pending';
@@ -82,16 +81,14 @@ $(function () {
 
       return `
         <div class="card">
-          <div class="card-top">
-            <div class="card-title"><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></div>
+          <div class="card-header">
+            <a href="${item.url}" target="_blank" rel="noopener" class="card-title">${item.title}</a>
             <span class="badge ${badgeCls}">${badgeTxt}</span>
           </div>
-          <div class="card-bottom">
-            <div class="card-category">
-              <span class="card-indicator ${indClass}"></span>
-              <span>${catLabel}</span>
-            </div>
-            <div>Due: <span>${item.dueDate}</span></div>
+          <div class="card-meta">
+            <span class="card-cat">${catLabel}</span>
+            <span class="card-sep">•</span>
+            <span class="card-due">Due: ${item.dueDate}</span>
           </div>
         </div>`;
     }).join('');
