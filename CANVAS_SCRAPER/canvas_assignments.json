@@ -1,19 +1,5 @@
 [
   {
-    "title": "Read and Watch : Week One Mandatory Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46800"
-  },
-  {
-    "title": "Roll Call Attendance",
-    "category": "Assignment",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46811"
-  },
-  {
     "title": "Tech Forum One - Reflection Paper",
     "category": "Assignment",
     "dueDate": "No due date",
@@ -21,67 +7,11 @@
     "url": "https://alueducation.instructure.com/courses/3130/assignments/45852"
   },
   {
-    "title": "Read and Watch : Week Two Mandatory Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46804"
-  },
-  {
     "title": "Quiz One - Test your HTML/CSS/JS Prowess",
     "category": "Assignment",
     "dueDate": "No due date",
     "status": "Not Submitted",
     "url": "https://alueducation.instructure.com/courses/3130/assignments/45838"
-  },
-  {
-    "title": "Read and Watch : Week Three Mandatory Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46803"
-  },
-  {
-    "title": "Read and Watch : Week Four Mandatory Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46799"
-  },
-  {
-    "title": "Read and Watch : Week Four Additional Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46798"
-  },
-  {
-    "title": "Read and Watch : Week Five Mandatory Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46797"
-  },
-  {
-    "title": "Read and Watch : Week Five Additional Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46796"
-  },
-  {
-    "title": "Read and Watch : Week Six Mandatory Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46802"
-  },
-  {
-    "title": "Read and Watch : Week Six Additional Resources",
-    "category": "Reading / Resource",
-    "dueDate": "No due date",
-    "status": "Not Submitted",
-    "url": "https://alueducation.instructure.com/courses/3130/assignments/46801"
   },
   {
     "title": "CSS, advanced (Front-End Web Development) [synced from intranet]",
@@ -154,10 +84,94 @@
     "url": "https://alueducation.instructure.com/courses/3130/assignments/48380"
   },
   {
-    "title": "Regex Onboarding Hackathon",
+    "title": "Read and Watch : Week One Mandatory Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46800"
+  },
+  {
+    "title": "Read and Watch : Week Two Mandatory Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46804"
+  },
+  {
+    "title": "Read and Watch : Week Three Mandatory Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46803"
+  },
+  {
+    "title": "Read and Watch : Week Four Mandatory Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46799"
+  },
+  {
+    "title": "Read and Watch : Week Four Additional Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46798"
+  },
+  {
+    "title": "Read and Watch : Week Five Mandatory Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46797"
+  },
+  {
+    "title": "Read and Watch : Week Five Additional Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46796"
+  },
+  {
+    "title": "Read and Watch : Week Six Mandatory Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46802"
+  },
+  {
+    "title": "Read and Watch : Week Six Additional Resources",
+    "category": "Reading / Resource",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46801"
+  },
+  {
+    "title": "Unknown",
     "category": "Assignment",
     "dueDate": "Sep 11 by 11:59pm",
     "status": "Submitted (Sep 6 at 12:32pm)",
     "url": "https://alueducation.instructure.com/courses/3130/assignments/46805"
+  },
+  {
+    "title": "Quiz Assessment - Formative II",
+    "category": "Assignment",
+    "dueDate": "No due date",
+    "status": "Locked / Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/48824"
+  },
+  {
+    "title": "Roll Call Attendance",
+    "category": "Assignment",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46811"
+  },
+  {
+    "title": "Summative Assignment - Building Responsive UI",
+    "category": "Assignment",
+    "dueDate": "No due date",
+    "status": "Not Submitted",
+    "url": "https://alueducation.instructure.com/courses/3130/assignments/46812"
   }
 ]
