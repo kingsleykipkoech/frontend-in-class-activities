@@ -7,6 +7,11 @@
 body {
     font-family: 'Outfit', sans-serif;
     background-color: #0f1117;
+    background-image: url('assets/hero-bg.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
     color: #f3f4f6;
     min-height: 100vh;
     line-height: 1.5;
@@ -87,12 +92,14 @@ body {
 }
 
 .hero-bottom-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     gap: 24px;
 }
 
 .card-spotlight {
+    flex: 1;
     background-color: #171b24;
     border: 1px solid #232733;
     border-radius: 12px;
@@ -164,41 +171,31 @@ body {
     text-decoration: underline;
 }
 
-.card-explore {
-    position: relative;
-    background-color: #171b24;
-    border: 1px solid #232733;
-    border-radius: 12px;
-    padding: 24px;
+.explore-action {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 200px;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-    cursor: pointer;
+    align-items: flex-end;
 }
 
-.card-explore:hover {
-    border-color: #c59b27;
-    transform: translateY(-2px);
-}
-
-.explore-title {
-    font-size: 18px;
-    font-weight: 600;
+.btn-explore {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #171b24;
+    border: 1px solid #c59b27;
     color: #ffffff;
-    letter-spacing: 1px;
-}
-
-.explore-subtitle {
+    padding: 12px 28px;
+    border-radius: 8px;
     font-size: 14px;
-    color: #9ca3af;
-    margin-top: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.link-explore-overlay {
-    position: absolute;
-    inset: 0;
+.btn-explore:hover {
+    background-color: #c59b27;
+    color: #000000;
 }
 
 @media (max-width: 768px) {
@@ -220,7 +217,8 @@ body {
     }
 
     .hero-bottom-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .card-spotlight {
@@ -231,5 +229,9 @@ body {
     .cover-wrapper {
         width: 120px;
         height: 160px;
+    }
+
+    .btn-explore {
+        width: 100%;
     }
 }
