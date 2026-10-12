@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #0f1117;
+    color: #f3f4f6;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+.header {
+    border-bottom: 1px solid #232733;
+    padding: 18px 24px;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #ffffff;
+}
+
+.btn-new-book {
+    background-color: #c59b27;
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-new-book:hover {
+    background-color: #dfb23b;
+}
+
+.hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+}
+
+.hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 50px;
+}
+
+.hero-title span {
+    display: block;
+}
+
+.hero-bottom-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
+
+.card-spotlight {
+    background-color: #171b24;
+    border: 1px solid #232733;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.cover-wrapper {
+    flex-shrink: 0;
+    width: 140px;
+    height: 190px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.book-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.badge-gold {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #c59b27;
+    text-transform: uppercase;
+}
+
+.book-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.book-synopsis {
+    font-size: 14px;
+    color: #d1d5db;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+.link-view-book {
+    display: inline-block;
+    margin-top: 8px;
+    color: #c59b27;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.link-view-book:hover {
+    text-decoration: underline;
+}
+
+.card-explore {
+    position: relative;
+    background-color: #171b24;
+    border: 1px solid #232733;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 200px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.card-explore:hover {
+    border-color: #c59b27;
+    transform: translateY(-2px);
+}
+
+.explore-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.explore-subtitle {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-top: 6px;
+}
+
+.link-explore-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .hero-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-spotlight {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cover-wrapper {
+        width: 120px;
+        height: 160px;
+    }
+}

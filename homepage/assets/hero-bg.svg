@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#161616" />
+      <stop offset="45%" stop-color="#0c0c0c" />
+      <stop offset="80%" stop-color="#060606" />
+      <stop offset="100%" stop-color="#030303" />
+    </radialGradient>
+
+    <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a84b" stop-opacity="0.25" />
+      <stop offset="50%" stop-color="#eac875" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#d4a84b" stop-opacity="0.08" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#vignette)" />
+
+  <g transform="translate(960, 460)">
+    <circle r="180" fill="none" stroke="url(#goldRing)" stroke-width="1.2" />
+    <circle r="280" fill="none" stroke="url(#goldRing)" stroke-width="1.2" opacity="0.9" />
+    <circle r="390" fill="none" stroke="url(#goldRing)" stroke-width="1.2" opacity="0.8" />
+    <circle r="510" fill="none" stroke="url(#goldRing)" stroke-width="1.2" opacity="0.65" />
+    <circle r="640" fill="none" stroke="url(#goldRing)" stroke-width="1.0" opacity="0.45" />
+    <circle r="780" fill="none" stroke="url(#goldRing)" stroke-width="1.0" opacity="0.3" />
+  </g>
+</svg>
