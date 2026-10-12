@@ -23,7 +23,7 @@ body {
 }
 
 .nav-container {
-    max-width: 1100px;
+    max-width: 1280px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -73,9 +73,9 @@ body {
 }
 
 .hero {
-    max-width: 1100px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 60px 24px 80px;
+    padding: 50px 24px 80px;
 }
 
 .hero-title {
@@ -95,28 +95,28 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 24px;
+    gap: 32px;
 }
 
 .card-spotlight {
     flex: 1;
     background-color: #171b24;
     border: 1px solid #232733;
-    border-radius: 16px;
-    padding: 32px 36px;
+    border-radius: 20px;
+    padding: 48px 52px;
     display: flex;
-    gap: 32px;
+    gap: 48px;
     align-items: center;
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
 }
 
 .cover-wrapper {
     flex-shrink: 0;
-    width: 190px;
-    height: 260px;
-    border-radius: 8px;
+    width: 280px;
+    height: 380px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
 }
 
 .book-cover {
@@ -129,44 +129,46 @@ body {
 .book-details {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
 }
 
 .badge-gold {
     display: inline-block;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
     color: #c59b27;
     text-transform: uppercase;
 }
 
 .book-title {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 600;
     color: #ffffff;
+    line-height: 1.2;
 }
 
 .book-author {
-    font-size: 15px;
+    font-size: 18px;
     color: #9ca3af;
 }
 
 .book-synopsis {
-    font-size: 15px;
+    font-size: 17px;
     color: #d1d5db;
     line-height: 1.6;
-    margin-top: 4px;
-    max-width: 440px;
+    margin-top: 6px;
+    max-width: 520px;
 }
 
 .link-view-book {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 12px;
     color: #c59b27;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 17px;
+    transition: color 0.2s ease;
 }
 
 .link-view-book:hover {
@@ -200,7 +202,7 @@ body {
     color: #000000;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-container {
         flex-wrap: wrap;
         gap: 16px;
@@ -226,13 +228,17 @@ body {
     .card-spotlight {
         flex-direction: column;
         align-items: flex-start;
-        padding: 24px;
-        gap: 20px;
+        padding: 28px;
+        gap: 24px;
     }
 
     .cover-wrapper {
-        width: 150px;
-        height: 205px;
+        width: 180px;
+        height: 245px;
+    }
+
+    .book-title {
+        font-size: 28px;
     }
 
     .btn-explore {
