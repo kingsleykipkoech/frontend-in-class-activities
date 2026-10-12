@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book & Notes Vault</title>
+
+    <!-- Google Fonts: Cormorant Garamond (Serif) & Outfit (Clean Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Modular Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/hero.css">
+</head>
+<body>
+
+    <!-- 1. TOP NAVIGATION BAR -->
+    <header class="header">
+        <nav class="nav-container">
+            <!-- Brand Logo -->
+            <a href="#" class="logo">VAULT</a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#catalog">Catalog</a></li>
+                <li><a href="#preferences">Preferences</a></li>
+            </ul>
+
+            <!-- New Book Action Button -->
+            <button type="button" class="btn-new-book">+ New Book</button>
+        </nav>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <main class="hero">
+        <div class="hero-container">
+
+            <!-- Main Editorial Headline -->
+            <h1 class="hero-title">
+                <span>Nurturing Knowledge.</span>
+                <span>Empowering Mastery.</span>
+            </h1>
+
+            <!-- Bottom Content Grid -->
+            <div class="hero-bottom-grid">
+
+                <!-- Left: Pick of the Month Card -->
+                <div class="card-spotlight">
+                    <!-- Physical Book Cover Image -->
+                    <div class="cover-wrapper">
+                        <img src="./assets/book-cover.jpg" alt="Computer Systems Book Cover" class="book-cover">
+                    </div>
+
+                    <!-- Book Information & Synopsis -->
+                    <div class="book-details">
+                        <span class="badge-gold">PICK OF THE MONTH</span>
+                        <h2 class="book-title">Computer Systems</h2>
+                        <p class="book-author">by Randal Bryant & David O'Hallaron</p>
+                        <p class="book-synopsis">
+                            Foundations of architecture, memory hierarchy & hardware-software interface.
+                        </p>
+                        <a href="#catalog" class="link-view-book">View Book &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Right: Explore Catalog Card -->
+                <div class="card-explore">
+                    <h2 class="explore-title">EXPLORE CATALOG</h2>
+                    <p class="explore-subtitle">25 Curated Volumes in the Vault</p>
+                    <a href="#catalog" class="link-explore-overlay" aria-label="Explore Catalog"></a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
